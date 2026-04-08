@@ -1,0 +1,64 @@
+.header {
+  width: 100%;
+  background-color: #000;
+  border-bottom: 1px solid #222;
+  top: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.headerLinks {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.headerLink {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.headerLink:hover {
+  color: #ff0000;
+  scale: 1.05;
+  transition: all 0.3s case-in-out;
+  border-bottom: 2px solid #ff0000;
+}
+
+/* Responsividade obrigatória: iPhone SE */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .headerLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .headerLink {
+    font-size: 0.75rem;
+  }
+}
+/*#e4dac7;*/

@@ -28,8 +28,11 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
   const { toast } = useToast()
 
   useEffect(() => {
+    if (!open) return
+    setSportsItem(null)
+    
     const requestData = async () => {
-      const { response } = await api<sportsItemType>('GET', `/sports-items/${id}`)
+      const { response } = await api<sportsItemType>('GET', `/sport-articles/${id}`)
 
       if (response) {
         setSportsItem(response)
@@ -53,7 +56,7 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
 
-    const { error } = null 
+    const { error } = await JSON.parse(await updateSportsItem(newForm))
 
     if (error) {
       setError(error)

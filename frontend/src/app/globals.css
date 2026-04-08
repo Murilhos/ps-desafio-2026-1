@@ -1,6 +1,8 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
     :root {
@@ -46,3 +48,36 @@
         @apply bg-background text-foreground;
     }
 }
+
+
+
+/* Variáveis para facilitar o design e Dark Mode */
+/*:root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: #ff0000;
+    --secondary: #1a1a1a;
+}
+*/
+
+/* Reset básico para garantir a responsividade */
+/* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*/
+/*body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif; 
+}
+*/
+
+/* Estilo para o botão COMPRAR*/
+/*button {
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+*/

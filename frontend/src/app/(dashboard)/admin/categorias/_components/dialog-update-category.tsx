@@ -13,7 +13,7 @@ import { updateCategory } from '@/actions/category'
 import { filterFormData } from '@/services/filter-form-data'
 import { useEffect, useState } from 'react'
 import { useToast } from '@/components/use-toast'
-import { categoryType } from '@/types/category'
+import { CategoryType } from '@/types/category'
 import { ResponseErrorType, api } from '@/services/api'
 
 interface DialogUpdateCategoryProps {
@@ -25,17 +25,20 @@ export function DialogUpdateCategory({
   id,
   children,
 }: DialogUpdateCategoryProps) {
-  const [category, setCategory] = useState<categoryType | null>(null)
+  const [category, setCategory] = useState<CategoryType | null>(null)
   const [open, setOpen] = useState<boolean>()
   const [error, setError] = useState<ResponseErrorType | null>(null)
   const { toast } = useToast()
 
   useEffect(() => {
+    if (!open) return
+    setCategory(null)
+
     const requestData = async () => {
-      const { response } = null // requisicao para api
+      const { response } = await api('GET', `/category/${id}`)
 
       if (response) {
-        setCategory(response)
+        setCategory(response as CategoryType)
       } else {
         setCategory(null)
         toast({

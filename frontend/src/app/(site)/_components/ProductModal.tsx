@@ -20,12 +20,28 @@ export default function ProductModal({ product, onClose, onUpdateStock }: ModalP
     const [shippingInfo, setShippingInfo] = useState('');
     const [isCepValid, setIsCepValid] = useState(false);
 
+    
+    /**
+     * Processa a compra final de um artigo esportivo.
+     * 
+     * Envia uma solicitação de compra para a API com o ID do produto e a quantidade.
+     * Atualiza o estoque do componente pai após a compra ser concluída com sucesso.
+     * Exibe mensagens de sucesso ou erro apropriadas para o usuário.
+     * 
+     * Exibe um alerta caso a solicitação à API falhe ou ocorra um erro durante o processamento.
+     * 
+     * Observações:
+     * - Define o estado `isBuying` como `true` durante a requisição e `false` após a conclusão.
+     * - Chama o callback `onUpdateStock()` para sincronizar o componente pai com a nova quantidade de estoque da resposta da API.
+     * - Fecha o modal após a compra ser concluída com sucesso através do callback `onClose()`.
+     * - Utiliza alertas para feedback do usuário (mensagens de sucesso, erro e falha geral).
+     * 
+     */
     const handleFinalBuy = async () => {
         setIsBuying(true);
         try{
             const res = await buySportsItem(product.id, quantity);
             const { response, error } = JSON.parse(res);
-            
 
             //Pegar o valor recebido da API e mandar para o pai
             if(response){
@@ -43,20 +59,34 @@ export default function ProductModal({ product, onClose, onUpdateStock }: ModalP
         }
     };
 
+    /**
+     * Processa a mudança no input de CEP e valida o endereço.
+     * 
+     * Remove caracteres não numéricos do valor inserido.
+     * Quando o CEP contém 8 dígitos, faz uma requisição à API ViaCEP para obter dados de localidade.
+     * Se localizado, exibe informações de frete simulado e marca o CEP como válido.
+     * Se não localizado, exibe mensagem de erro e marca como inválido.
+     * Para CEPs incompletos, limpa as informações de frete e marca como inválido.
+     */
     const handleCepChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Remove tudo que não é número do valor digitado
         const value = e.target.value.replace(/\D/g, '');
         setCep(value);
 
         if (value.length === 8) {
             const data = await getAddressByCep(value);
+            
             if (data) {
+                // Exibe a localidade e valor do frete simulado e marca o CEP como válido para habilitar o botão de compra
                 setShippingInfo(`Entrega para: ${data.localidade} - R$ 15,90 (3 dias úteis)`);
                 setIsCepValid(true);
             } else {
+                // Se o CEP não for encontrado na API
                 setShippingInfo('CEP não encontrado.');
                 setIsCepValid(false);
             }
         } else{
+            // Se o CEP estiver incompleto, limpa as informações
             setIsCepValid(false);
             setShippingInfo('');
         }

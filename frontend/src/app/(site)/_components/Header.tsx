@@ -11,6 +11,7 @@ export default function Header() {
   const [isDark, setIsDark] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
   // Lógica do Header (Sobe/Desce)
   useEffect(() => {
       const controlHeader = () => {
@@ -25,12 +26,14 @@ export default function Header() {
           }
       };
       window.addEventListener('scroll', controlHeader);
+
       return () => window.removeEventListener('scroll', controlHeader);
   }, [lastScrollY]);
 
   //Verifica o tema salvo no navegador assim que o componente carrega
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
+
     //"Dark" é definido como padrão se nada estiver salvo
     if (savedTheme === 'dark' || !savedTheme) {
       setIsDark(true);
@@ -39,6 +42,7 @@ export default function Header() {
       setIsDark(false);
       document.querySelector('.theme')?.setAttribute('data-theme', 'light');
     }
+    
   }, []);
 
   //Função para alternar entre Dark e Light

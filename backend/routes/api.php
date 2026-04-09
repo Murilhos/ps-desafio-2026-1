@@ -34,6 +34,7 @@ Route::get('/category/{id}', [CategoryController::class, 'show']);
 
 Route::get('/sport-articles', [SportArticleController::class, 'index']);
 Route::get('/sport-articles/{id}', [SportArticleController::class, 'show']);
+
 //Rota para comprar um artigo esportivo, onde {id} é o ID do artigo a ser comprado.
 //O método buy do controlador SportArticleController será responsável por processar a compra do artigo esportivo.
 Route::post('/sport-articles/{id}', [SportArticleController::class, 'buy']);

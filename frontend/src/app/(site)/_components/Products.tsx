@@ -36,8 +36,8 @@ export default function Products() {
     /**
      * Atualiza a quantidade (stock) de um item de esporte específico na lista de itens.
      * 
-     * @param {string} id - O identificador único do item cujo estoque será atualizado
-     * @param {number} newAmount - A nova quantidade/estoque do item
+     * Parâmetro: id - O identificador único do item cujo estoque será atualizado
+     *            newAmount - A nova quantidade/estoque do item
      * 
      * Explicação:
      * Esta função utiliza o padrão imutável do React, criando um novo array em vez de modificar

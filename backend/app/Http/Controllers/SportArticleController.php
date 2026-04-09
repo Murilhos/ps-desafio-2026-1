@@ -91,6 +91,20 @@ class SportArticleController extends Controller
         return response()->json(['Message' => 'Equipamento deletado com sucesso']);
     }
 
+    /**
+     * Compra um artigo esportivo com a quantidade solicitada.
+     *
+     * Este método processa a compra de um artigo esportivo, validando a quantidade
+     * solicitada e verificando se há estoque disponível. Se a quantidade solicitada
+     * for menor ou igual ao estoque, decrementa a quantidade e retorna sucesso.
+     * Caso contrário, retorna uma mensagem de erro indicando a disponibilidade.
+     * 
+     * Retorno:
+     *         - HTTP_OK (200): Se a compra foi realizada com sucesso,
+     *          retorna a mensagem de sucesso e a nova quantidade em estoque
+     *         - HTTP_BAD_REQUEST (400): Se a quantidade solicitada não está
+     *          disponível ou o produto está fora de estoque
+     */
     public function buy(Request $request, $id): JsonResponse
     {  
         $request->validate([

@@ -52,7 +52,7 @@
 /* --- TEMA DO SITE --- */
 
 .theme {
-    /* Dark Mode Berzerk (Padrão) */
+    /* Dark Mode (Padrão) */
     --background: 0 0% 5%;       /* #0d0d0d */
     --foreground: 0 0% 100%;     /* #ffffff */
     --card: 0 0% 8%;
@@ -81,7 +81,7 @@
 
 }
 
-/* Garante que todos os elementos dentro do tema Berzerk respeitem 
+/* Garante que todos os elementos dentro do tema respeitem 
    a variável de borda definida no escopo da classe. */
 .theme * {
     border-color: hsl(var(--border)) !important;

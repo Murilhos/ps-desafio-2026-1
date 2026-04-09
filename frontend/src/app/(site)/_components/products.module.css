@@ -1,5 +1,5 @@
 .products {
-    padding: 40px 0px;
+    padding: 60px 0px;
 }
 
 .container{
@@ -9,15 +9,21 @@
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: hsl(var(--accent));
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-.productsList {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+/* Customização do Swiper */
+.mySwiper :global(.swiper-button-next),
+.mySwiper :global(.swiper-button-prev) {
+  color: hsl(var(--accent)) !important;
+  transform: scale(0.6);
+}
+
+.mySwiper :global(.swiper-pagination-bullet-active) {
+  background: hsl(var(--accent)) !important;
 }

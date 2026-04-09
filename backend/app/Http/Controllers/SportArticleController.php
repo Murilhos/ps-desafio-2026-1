@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSportArticleRequest;
 use App\Http\Requests\UpdateSportArticleRequest;
 use App\Models\SportArticle;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,14 +91,19 @@ class SportArticleController extends Controller
         return response()->json(['Message' => 'Equipamento deletado com sucesso']);
     }
 
-    public function buy($id): JsonResponse
-    {   
-        $qtdRequested = request()->input('quantity', 1);
+    public function buy(Request $request, $id): JsonResponse
+    {  
+        $request->validate([
+            'quantity' => 'required|integer|min:1'
+        ]); 
+        $qtdRequested = $request->integer('quantity', 1);
+
         $sportArticle = $this->sportArticle->findOrFail($id);
 
         if ($sportArticle->amount >= $qtdRequested) {
             $sportArticle->decrement('amount', $qtdRequested);
-            return response()->json(['Message' => 'Compra realizada com sucesso']);
+            
+            return response()->json(['Message' => 'Compra realizada com sucesso', 'amount' => $sportArticle->amount], Response::HTTP_OK);
 
         } else if ($sportArticle->amount > 0) {
             $message = "Quantidade solicitada indisponível. Apenas {$sportArticle->amount} em estoque.";

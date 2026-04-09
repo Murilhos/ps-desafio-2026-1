@@ -1,9 +1,27 @@
-.container{
-    aspect-ratio: 1200/300;
+.container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1200 / 400; 
 }
 
 .bannerImage {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .container {
+        aspect-ratio: auto; /* Desativa a proporção de desktop */
+        height: 45vh;
+        margin-top: 70px;
+        border-bottom: 2px solid hsl(var(--accent));
+    }
+
+    .bannerImage {
+        object-position: center center; 
+        transform: scale(1.1);
+    }
 }

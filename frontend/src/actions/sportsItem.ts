@@ -34,8 +34,8 @@ export async function destroySportsItem(id: string) {
     return JSON.stringify(res)
 }
 
-export async function buySportsItem(id: string) {
-    const res = await api('POST', `/sport-articles/${id}`)
+export async function buySportsItem(id: string, quantity: number = 1) {
+    const res = await api('POST', `/sport-articles/${id}`, { data: { quantity } })
 
     if(!res.error){
         revalidatePath('/')

@@ -3,9 +3,11 @@ import Header from "./_components/Header";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
     return (
-    <div>
+    <div className="theme"> {/* O Header vai procurar por esta classe */}
         <Header />
-        {children}
+        <main>
+          {children}
+        </main>
     </div>
   );
 }

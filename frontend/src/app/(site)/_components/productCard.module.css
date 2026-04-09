@@ -1,43 +1,63 @@
-.productCard{
-    background-color: #ffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.productCard {
+    background: transparent;
+    border: 1px solid transparent; 
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s ease;
+    height: 100%;
     text-align: center;
-    position: relative;
 }
 
-.productLink{
-    aspect-ratio: 300 / 200;
+.productCard:hover {
+    border-color: hsl(var(--border));
+    transform: translateY(-5px);
+}
+
+.productCard:hover .productImage {
+    transform: scale(1.05);
+}
+
+.productLink {
+    aspect-ratio: 3 / 4;
     display: block;
-    max-width: 100%;
-    max-height: 200px;
+    width: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
 }
 
-.productImage{
+.productImage {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
+    transition: transform 0.5s ease;
 }
 
-.productName{
-    font-size: 1.5rem;
+.productName {
+    font-size: 0.9rem; /* Menor e mais elegante */
     font-weight: 600;
-    color: #333
+    margin: 15px 0 5px;
+    text-transform: none; /* Oversized costuma usar Title Case */
+    color: hsl(var(--foreground));
+}
+
+.productPrice {
+    color: hsl(var(--accent));
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0;
 }
 
 .productCategory{
-    font-size: 0.88rem;
-    color: #666;
-    text-align: left;
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 5px;
 }
 
 .productBrand{
-    font-size: 0.88rem;
-    color: #666;
-    text-align: left;
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 5px;
 }
 
 .productYear{
@@ -48,38 +68,34 @@
     font-weight: 500;
 }
 
-.productPrice{
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #232222;
-    margin-bottom: 10px;
-    text-align: center;
+.productStock{
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 5px;
 }
 
-.productAmount{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #e4dac7;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.88rem;
-    font-weight: 500;
+.buyButton {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 15px;
+    visibility: hidden; /* Só aparece no hover para ficar clean */
 }
 
-.buyButton{
-    background-color: #e4dac7;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    width: 100%;
+.productCard:hover .buyButton {
+    visibility: visible;
 }
-.productButton:disabled {
-    background-color: #ccc;
-    color:#666;
+
+.buyButton:hover:not(:disabled) {
+    background: hsl(var(--accent));
+    color: #fff;
+}
+
+.buyButton:disabled {
+    background: hsl(var(--border));
+    color: hsl(var(--card-foreground));
     cursor: not-allowed;
 }

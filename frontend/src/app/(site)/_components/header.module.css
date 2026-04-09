@@ -1,64 +1,145 @@
 .header {
   width: 100%;
-  background-color: #000;
-  border-bottom: 1px solid #222;
+  height: 100px; 
+  position: fixed;
   top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  /* Transição suave para o efeito da Header sumir */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible; 
+}
+.header.hidden {
+  transform: translateY(-100%);
 }
 
 .container {
+  max-width: 1300px; 
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px 20px;
 }
 
 .headerLinks {
   display: flex;
+  gap: 30px;
   align-items: center;
-  gap: 25px;
 }
 
 .headerLink {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.85rem;
+  color: #ffffff !important;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+/* Efeito de underline no hover */
+.headerLink::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: hsl(var(--accent));
+  transition: width 0.3s ease;
+}
+
+.headerLink:hover::after {
+  width: 100%;
 }
 
 .headerLink:hover {
-  color: #ff0000;
-  scale: 1.05;
-  transition: all 0.3s case-in-out;
-  border-bottom: 2px solid #ff0000;
+  opacity: 0.8;
 }
 
-/* Responsividade obrigatória: iPhone SE */
+.logo {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  z-index: 1001; /* Garante que a logo fique sobre o banner */
+}
+
+.logo:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.themeBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.themeBtn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    height: 70px;
+    overflow: hidden; /*Impede que a logo gigante quebre o layout */
   }
 
   .container {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    position: static !important; 
+    transform: none !important;
+    height: 50px !important; 
+    max-width: 90px;
   }
 
   .headerLinks {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .headerLink {
+    font-size: 0.65rem;
+    letter-spacing: 0px;
   }
   
-  .headerLink {
-    font-size: 0.75rem;
+  .btnText {
+    display: none !important; 
+  }
+
+  /* O botão vira uma bolinha com a Lua/Sol centralizada */
+  .themeBtn {
+    padding: 8px; 
+    border-radius: 50%;
+    min-width: 35px;
+    min-height: 35px;
+    justify-content: center;
+    margin-left: 5px; /* Separação do último link */
+  }
+
+  .icon {
+    font-size: 1rem; /* Emoji Lua/Sol maior e visível */
   }
 }
-/*#e4dac7;*/

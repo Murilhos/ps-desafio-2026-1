@@ -11,7 +11,7 @@ export default function Header() {
   const [isDark, setIsDark] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  // Lógica do Smart Header (Sobe/Desce)
+  // Lógica do Header (Sobe/Desce)
   useEffect(() => {
       const controlHeader = () => {
           if (typeof window !== 'undefined') {
